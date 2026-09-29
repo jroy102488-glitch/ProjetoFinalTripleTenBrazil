@@ -11,6 +11,50 @@ O objetivo é classificar o risco em três categorias:
 - **Alto**
 
 O projeto foi desenvolvido como parte do projeto final do programa de Data Science da TripleTen Brasil.
+## Objetivo de negócio e KPIs
+### Objetivo de negócio
+
+O projeto busca apoiar a identificação e priorização de situações de maior risco de incêndio no Brasil por meio de Machine Learning. A proposta é combinar informações meteorológicas, geográficas, temporais e de cobertura e uso da terra para classificar o nível de risco em **Baixo, Médio ou Alto**.
+
+Em um cenário operacional, essa classificação pode servir como ferramenta de apoio para equipes de monitoramento e gestão de risco, ajudando na priorização de municípios e períodos que merecem maior atenção.
+
+O modelo não prevê diretamente a ocorrência de um incêndio. Ele estima a categoria do indicador de risco de fogo dentro do universo de município-dias associados aos registros analisados.
+
+### KPIs técnicos
+
+Devido ao desbalanceamento das classes, a avaliação do modelo não depende apenas da acurácia. As principais métricas utilizadas são:
+
+- **F1-score Macro:** avalia o desempenho considerando igualmente as três classes.
+- **Balanced Accuracy:** avalia o desempenho de forma balanceada entre as classes.
+- **Recall por classe:** permite analisar a capacidade do modelo de identificar cada nível de risco.
+
+O **Random Forest**, utilizado como principal modelo de referência, apresentou no conjunto de teste aleatório:
+
+- **Accuracy:** 0,8367
+- **Balanced Accuracy:** 0,7392
+- **F1-score Macro:** 0,7040
+- **Recall da classe Alto:** 0,8731
+
+### KPI operacional
+
+Como indicador operacional, considera-se especialmente o **Recall da classe Alto**, que representa a proporção dos casos realmente classificados como Alto que são corretamente identificados pelo modelo.
+
+No conjunto de teste aleatório, o modelo identificou corretamente aproximadamente **87,3% dos casos da classe Alto**.
+
+Esse indicador é relevante para um cenário de apoio ao monitoramento, pois permite avaliar a capacidade do modelo de sinalizar situações que apresentam o nível mais elevado de risco dentro das categorias definidas.
+
+### Validação temporal
+
+Além da divisão aleatória entre treino e teste, foi realizada uma validação temporal utilizando observações mais recentes como conjunto de teste.
+
+Nessa avaliação, o Random Forest apresentou:
+
+- **Accuracy:** 0,6999
+- **Balanced Accuracy:** 0,5540
+- **F1-score Macro:** 0,5516
+
+A redução de desempenho na validação temporal indica que a generalização para períodos futuros é mais desafiadora. Em uma eventual aplicação operacional, isso reforça a necessidade de monitorar o desempenho e atualizar periodicamente o modelo.
+
 
 ---
 
